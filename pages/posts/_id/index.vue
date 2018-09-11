@@ -15,23 +15,16 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  asyncData(context, callback) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-       resolve({
-          loadedPost: {
-              id: '1',
-              title: "First Post(ID: " + context.params.id +")",
-              previewText: "This is our first post!",
-              author: 'Amon',
-              updatedDate: new Date(),
-              content: 'To define the parent component of a nested route, you need to create a Vue file with the same name as the directory which contain your children views.',
-              thumbnail:"https://static.pexels.com/photos/270348/pexels-photo-270348.jpeg"
-          }
-        })
-      }, 1000);
-    });    
+  asyncData(context) {
+    return axios.get(process.env.baseUrl + '/posts/' + context.params.id +'.json')
+    .then(res => {
+      return {
+        loadedPost: res.data
+      }
+    })
+    .catch(e => context.error(e))
   }
 }
 </script>

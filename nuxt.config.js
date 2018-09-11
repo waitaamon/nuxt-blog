@@ -28,6 +28,7 @@ module.exports = {
   ** Global CSS
   */
   css: [
+    '~assets/styles/main.css'
   ],
 
   /*
@@ -40,6 +41,7 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    '~plugins/core-components.js'
   ],
 
   /*
@@ -52,5 +54,12 @@ module.exports = {
     extend(config, ctx) {
       
     }
+  },
+  env: {
+    baseUrl: 'https://nuxt-blog-50360.firebaseio.com'
+  },
+  transition: {
+    name: 'fade',
+    mode: 'out-in'
   }
 }
